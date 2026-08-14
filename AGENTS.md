@@ -33,6 +33,7 @@ Guidelines for AI agents working in this repository. This is a two-face plugin f
 
 - `npm version patch` (or `minor` / `major`) bumps the version and creates a `v*` tag.
 - `git push --follow-tags` triggers `.github/workflows/publish.yml` → `npm publish --access public` using the `NPM_TOKEN` secret.
+- Use Conventional Commits for messages (`feat:` / `fix:` / `docs:` / `chore:` / `refactor:` / `test:`) — short, imperative subject.
 
 ## 6. Agent Notes
 
