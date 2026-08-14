@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dsh-subagent-max · 高保真原型</title>
+<style>
+/* ============================================================
+   DSH 设计 token —— 逐字对齐 @deepseek-ai/dsh-client-ui-theme
+   (design-platform.css + base.css + gradient-shadow-text.css)
+   ============================================================ */
+
+/* ---- 静态原色 (primitive) : light ---- */
+body {
+  --dsw-static-amber-100: rgb(254,245,231); --dsw-static-amber-400: rgb(247,173,49);
+  --dsw-static-amber-500: rgb(245,158,11); --dsw-static-amber-600: rgb(221,134,41);
+  --dsw-static-amber-900: rgb(39,36,31);
+  --dsw-static-blue-100: rgb(219,234,254); --dsw-static-blue-300: rgb(147,197,253);
+  --dsw-static-blue-400: rgb(96,165,250); --dsw-static-blue-450: rgb(77,147,248);
+  --dsw-static-blue-500: rgb(59,130,246); --dsw-static-blue-50: rgb(239,246,255);
+  --dsw-static-blue-600: rgb(37,99,235); --dsw-static-blue-800: rgb(30,64,175);
+  --dsw-static-blue-900: rgb(14,48,116); --dsw-static-blue-950: rgb(23,37,84);
+  --dsw-static-deepseek-100: rgb(228,237,253); --dsw-static-deepseek-200: rgb(211,226,255);
+  --dsw-static-deepseek-300: rgb(183,200,254); --dsw-static-deepseek-400: rgb(103,158,254);
+  --dsw-static-deepseek-450: rgb(86,134,254); --dsw-static-deepseek-500: rgb(65,118,230);
+  --dsw-static-deepseek-50: rgb(237,243,254); --dsw-static-deepseek-600: rgb(72,104,178);
+  --dsw-static-deepseek-800: rgb(52,65,91); --dsw-static-deepseek-900: rgb(40,49,66);
+  --dsw-static-green-100: rgb(230,250,237); --dsw-static-green-400: rgb(78,209,126);
+  --dsw-static-green-500: rgb(34,197,94); --dsw-static-green-900: rgb(35,60,44);
+  --dsw-static-neutral-00: rgb(255,255,255); --dsw-static-neutral-1000: rgb(0,0,0);
+  --dsw-static-neutral-100: rgb(245,245,245); --dsw-static-neutral-150: rgb(237,237,237);
+  --dsw-static-neutral-200: rgb(229,229,229); --dsw-static-neutral-250: rgb(220,220,220);
+  --dsw-static-neutral-300: rgb(212,212,212); --dsw-static-neutral-400: rgb(162,164,166);
+  --dsw-static-neutral-500: rgb(127,130,135); --dsw-static-neutral-50: rgb(250,250,250);
+  --dsw-static-neutral-550: rgb(101,103,107); --dsw-static-neutral-600: rgb(84,85,87);
+  --dsw-static-neutral-700: rgb(60,60,61); --dsw-static-neutral-800: rgb(41,41,41);
+  --dsw-static-neutral-850: rgb(33,33,35); --dsw-static-neutral-900: rgb(15,15,15);
+  --dsw-static-neutral-bluish-00: rgb(255,255,255); --dsw-static-neutral-bluish-1000: rgb(15,17,21);
+  --dsw-static-neutral-bluish-100: rgb(235,238,242); --dsw-static-neutral-bluish-150: rgb(233,236,242);
+  --dsw-static-neutral-bluish-200: rgb(225,229,238); --dsw-static-neutral-bluish-300: rgb(207,211,214);
+  --dsw-static-neutral-bluish-400: rgb(173,178,184); --dsw-static-neutral-bluish-500: rgb(151,157,166);
+  --dsw-static-neutral-bluish-50: rgb(249,250,251); --dsw-static-neutral-bluish-600: rgb(129,133,140);
+  --dsw-static-neutral-bluish-60: rgb(245,246,247); --dsw-static-neutral-bluish-700: rgb(97,102,107);
+  --dsw-static-neutral-bluish-750: rgb(67,69,74); --dsw-static-neutral-bluish-75: rgb(241,243,245);
+  --dsw-static-neutral-bluish-800: rgb(53,54,56); --dsw-static-neutral-bluish-850: rgb(44,44,46);
+  --dsw-static-neutral-bluish-875: rgb(35,35,36); --dsw-static-neutral-bluish-900: rgb(27,27,28);
+  --dsw-static-neutral-bluish-950: rgb(21,21,23);
+  --dsw-static-red-100: rgb(254,226,226); --dsw-static-red-400: rgb(242,90,90);
+  --dsw-static-red-500: rgb(239,68,68); --dsw-static-red-50: rgb(254,242,242);
+  --dsw-static-red-600: rgb(236,19,19); --dsw-static-red-900: rgb(87,12,12);
+}
+
+/* ---- 语义 alias + specific : light ---- */
+body {
+  --dsw-alias-bg-base: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-layer-1: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-layer-2: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-layer-3: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-mask-1: rgba(0,0,0,0.24); --dsw-alias-bg-mask-2: rgba(0,0,0,0.12);
+  --dsw-alias-bg-module-platform: var(--dsw-static-neutral-bluish-60);
+  --dsw-alias-bg-overlay: var(--dsw-static-neutral-bluish-150);
+  --dsw-alias-border-inverted: rgba(0,0,0,0);
+  --dsw-alias-border-l1: rgba(0,0,0,0.04);
+  --dsw-alias-border-l2: rgba(0,0,0,0.10);
+  --dsw-alias-border-l3: rgba(0,0,0,0.12);
+  --dsw-alias-border-l4: rgba(0,0,0,0.16);
+  --dsw-alias-brand-primary: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-brand-text: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-button-floating-fill: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-button-floating-hover: var(--dsw-static-neutral-bluish-75);
+  --dsw-alias-button-ghost-active-fill: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
+  --dsw-alias-button-primary-hover: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-interactive-bg-active: rgba(38,49,72,0.10);
+  --dsw-alias-interactive-bg-hover: rgba(38,49,72,0.06);
+  --dsw-alias-interactive-bg-hover-solid: var(--dsw-static-neutral-bluish-75);
+  --dsw-alias-interactive-bg-hover-danger: rgba(236,19,19,0.05);
+  --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-400);
+  --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-200);
+  --dsw-alias-label-primary: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-label-primary-foreground: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-label-secondary: var(--dsw-static-neutral-bluish-700);
+  --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-600);
+  --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-markdown-inline-code: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-scrollbar-bg-l1: var(--dsw-static-neutral-200);
+  --dsw-alias-scrollbar-hover-l1: var(--dsw-static-neutral-300);
+  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-500);
+  --dsw-alias-state-business-tertiary: var(--dsw-static-deepseek-100);
+  --dsw-alias-state-error-primary: var(--dsw-static-red-600);
+  --dsw-alias-state-error-secondary: var(--dsw-static-red-400);
+  --dsw-alias-state-success-primary: var(--dsw-static-green-500);
+  --dsw-alias-state-success-secondary: var(--dsw-static-green-400);
+  --dsw-alias-state-success-tertiary: var(--dsw-static-green-100);
+  --dsw-alias-state-warn-primary: var(--dsw-static-amber-500);
+  --dsw-alias-state-warn-secondary: var(--dsw-static-amber-400);
+  --dsw-alias-state-warn-tertiary: var(--dsw-static-amber-100);
+  --dsw-alias-tooltip-bg: var(--dsw-static-neutral-bluish-850);
+  --dsw-specific-menu: var(--dsw-alias-bg-layer-3);
+  --dsw-specific-selector: var(--dsw-static-neutral-bluish-60);
+  --dsw-specific-sidebar-fill: var(--dsw-static-neutral-bluish-50);
+  --dsw-specific-tip: var(--dsw-static-neutral-bluish-60);
+}
+
+/* ---- 暗色主题 ---- */
+body[data-ds-dark-theme] {
+  --dsw-static-neutral-bluish-00: rgb(255,255,255);
+  --dsw-static-neutral-bluish-100: rgb(235,238,242);
+  --dsw-static-neutral-bluish-150: rgb(233,236,242);
+  --dsw-static-neutral-bluish-200: rgb(225,229,238);
+  --dsw-static-neutral-bluish-300: rgb(207,211,214);
+  --dsw-static-neutral-bluish-400: rgb(173,178,184);
+  --dsw-static-neutral-bluish-500: rgb(151,157,166);
+  --dsw-static-neutral-bluish-50: rgb(249,250,251);
+  --dsw-static-neutral-bluish-600: rgb(129,133,140);
+  --dsw-static-neutral-bluish-60: rgb(249,250,251);
+  --dsw-static-neutral-bluish-700: rgb(97,102,107);
+  --dsw-static-neutral-bluish-750: rgb(67,69,74);
+  --dsw-static-neutral-bluish-75: rgb(241,243,245);
+  --dsw-static-neutral-bluish-800: rgb(53,54,56);
+  --dsw-static-neutral-bluish-850: rgb(44,44,46);
+  --dsw-static-neutral-bluish-875: rgb(35,35,36);
+  --dsw-static-neutral-bluish-900: rgb(27,27,28);
+  --dsw-static-neutral-bluish-950: rgb(21,21,23);
+  --dsw-static-neutral-bluish-1000: rgb(15,17,21);
+  --dsw-static-deepseek-400: rgb(103,158,254);
+  --dsw-static-deepseek-450: rgb(86,134,254);
+  --dsw-static-deepseek-500: rgb(65,118,230);
+  --dsw-static-deepseek-800: rgb(52,65,91);
+  --dsw-static-red-400: rgb(242,90,90);
+  --dsw-static-red-600: rgb(236,19,19);
+  --dsw-static-green-500: rgb(34,197,94);
+  --dsw-static-green-400: rgb(78,209,126);
+  --dsw-static-green-900: rgb(35,60,44);
+  --dsw-static-amber-500: rgb(245,158,11);
+  --dsw-static-amber-400: rgb(247,173,49);
+  --dsw-static-amber-600: rgb(221,134,41);
+  --dsw-static-amber-900: rgb(39,36,31);
+  --dsw-static-neutral-200: rgb(229,229,229); --dsw-static-neutral-300: rgb(212,212,212);
+  --dsw-static-neutral-600: rgb(84,85,87); --dsw-static-neutral-550: rgb(101,103,107);
+  --dsw-static-neutral-700: rgb(60,60,61);
+
+  --dsw-alias-bg-base: var(--dsw-static-neutral-bluish-950);
+  --dsw-alias-bg-layer-1: var(--dsw-static-neutral-bluish-875);
+  --dsw-alias-bg-layer-2: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-bg-layer-3: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-bg-mask-1: rgba(0,0,0,0.5); --dsw-alias-bg-mask-2: rgba(0,0,0,0.2);
+  --dsw-alias-bg-module-platform: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-bg-overlay: var(--dsw-static-neutral-bluish-700);
+  --dsw-alias-border-inverted: rgba(255,255,255,0.06);
+  --dsw-alias-border-l1: rgba(255,255,255,0.06);
+  --dsw-alias-border-l2: rgba(255,255,255,0.12);
+  --dsw-alias-border-l3: rgba(255,255,255,0.16);
+  --dsw-alias-border-l4: rgba(255,255,255,0.20);
+  --dsw-alias-brand-primary: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-brand-text: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-button-floating-fill: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-button-floating-hover: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-button-ghost-active-fill: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
+  --dsw-alias-button-primary-hover: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-interactive-bg-active: rgba(255,255,255,0.14);
+  --dsw-alias-interactive-bg-hover: rgba(255,255,255,0.08);
+  --dsw-alias-interactive-bg-hover-solid: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-interactive-bg-hover-danger: rgba(242,90,90,0.15);
+  --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-600);
+  --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-label-primary: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-label-primary-foreground: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-label-secondary: var(--dsw-static-neutral-bluish-300);
+  --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-400);
+  --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-900);
+  --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-markdown-inline-code: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-scrollbar-bg-l1: var(--dsw-static-neutral-700);
+  --dsw-alias-scrollbar-hover-l1: var(--dsw-static-neutral-600);
+  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-400);
+  --dsw-alias-state-business-tertiary: var(--dsw-static-deepseek-800);
+  --dsw-alias-state-error-primary: var(--dsw-static-red-400);
+  --dsw-alias-state-error-secondary: var(--dsw-static-red-400);
+  --dsw-alias-state-success-primary: var(--dsw-static-green-500);
+  --dsw-alias-state-success-secondary: var(--dsw-static-green-400);
+  --dsw-alias-state-success-tertiary: var(--dsw-static-green-900);
+  --dsw-alias-state-warn-primary: var(--dsw-static-amber-500);
+  --dsw-alias-state-warn-secondary: var(--dsw-static-amber-400);
+  --dsw-alias-state-warn-tertiary: var(--dsw-static-amber-900);
+  --dsw-alias-tooltip-bg: var(--dsw-static-neutral-bluish-750);
+  --dsw-specific-menu: var(--dsw-alias-bg-layer-3);
+  --dsw-specific-selector: var(--dsw-static-neutral-bluish-800);
+  --dsw-specific-sidebar-fill: var(--dsw-static-neutral-bluish-900);
+  --dsw-specific-tip: var(--dsw-static-neutral-bluish-800);
+}
+
+/* ---- 字体 / 阴影 / 动效 (theme-shared) ---- */
+:root {
+  --dsw-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ds-font-family-code: 'SF Mono', 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, Courier, 'PingFang SC', 'Microsoft YaHei';
+  --ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-transition-duration: 0.2s; --ds-transition-duration-fast: 0.1s; --ds-transition-duration-slow: 0.3s;
+
+  --dsw-font-markdown-base: 16px/28px var(--dsw-font-family);
+  --dsw-font-markdown-small: 14px/24px var(--dsw-font-family);
+  --dsw-font-markdown-code: 14px/22px var(--ds-font-family-code);
+  --dsw-font-markdown-code-block: 13px/22px var(--ds-font-family-code);
+  --dsw-font-markdown-code-block-small: 12px/18px var(--ds-font-family-code);
+  --dsw-font-s-14: 14px/22px var(--dsw-font-family);
+  --dsw-font-s-strong-14: 500 14px/22px var(--dsw-font-family);
+  --dsw-font-xs-13: 13px/20px var(--dsw-font-family);
+  --dsw-font-xs-strong-13: 500 13px/20px var(--dsw-font-family);
+  --dsw-font-xxs-12: 12px/18px var(--dsw-font-family);
+  --dsw-font-xxs-strong-12: 500 12px/18px var(--dsw-font-family);
+  --dsw-font-xxxs-11: 11px/14px var(--dsw-font-family);
+  --dsw-font-xxxs-strong-11: 500 11px/14px var(--dsw-font-family);
+
+  --dsw-shadow-lv1: 0 2px 4px 0 rgba(0,0,0,0.05);
+  --dsw-shadow-lv2: 0 4px 12px 0 rgba(0,0,0,0.02), 0 2px 8px 0 rgba(0,0,0,0.04);
+  --dsw-shadow-lv3: 0 0 1px 0 rgba(0,0,0,0.20), 0 0 4px 0 rgba(0,0,0,0.02), 0 12px 32px 0 rgba(0,0,0,0.08);
+  --dsw-mask-blur: blur(2px);
+}
+
+/* ============================================================
+   基础
+   ============================================================ */
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: var(--dsw-font-family);
+  color: var(--dsw-alias-label-primary, #0f1115);
+  background: var(--dsw-alias-bg-base, #ffffff);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s var(--ds-ease-in-out), color 0.2s var(--ds-ease-in-out);
+}
+button { font-family: inherit; }
+.ico { width: 16px; height: 16px; flex: none; display: inline-block; }
+
+/* ============================================================
+   页面骨架（仅用于原型演示，非组件）
+   ============================================================ */
+.pagebar {
+  position: sticky; top: 0; z-index: 500;
+  display: flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 16px;
+  border-bottom: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04));
+  background: var(--dsw-alias-bg-base, #ffffff);
+}
+.pagebar .brand { font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: var(--dsw-alias-label-primary, #0f1115); }
+.pagebar .sub { font-size: 12px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.pagebar .spacer { flex: 1; }
+.themetoggle {
+  display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px;
+  border: 1px solid var(--dsw-alias-border-l2, rgba(0,0,0,0.1)); border-radius: 14px;
+  background: transparent; color: var(--dsw-alias-label-secondary, #61666b);
+  font-size: 12px; line-height: 18px; cursor: pointer;
+}
+.themetoggle:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(38,49,72,0.06)); }
+main { max-width: 1080px; margin: 0 auto; padding: 28px 24px 64px; }
+.section { margin: 0 0 40px; }
+.section h2 { font-size: 15px; font-weight: 600; margin: 0 0 4px; color: var(--dsw-alias-label-primary, #0f1115); }
+.section .desc { font-size: 12px; line-height: 18px; color: var(--dsw-alias-label-tertiary, #81858c); margin: 0 0 16px; }
+.stage { padding: 24px; border-radius: 16px; background: var(--dsw-alias-bg-module-platform, #f5f6f7); }
+.stage.dark-ish { background: var(--dsw-specific-tip, #f5f6f7); }
+
+/* ============================================================
+   状态圆点 StateDot —— 对齐官方 primitives/StateDot
+   官方态：done(warning/error) 圆点 + ongoing(蓝 8 格追光)
+   扩展态：idle(灰实心) / ready(灰空心) / failed(红) / running(追光)
+   ============================================================ */
+.sdot { position: relative; display: inline-block; flex: none; width: 10px; height: 10px; }
+.sdot::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: currentColor; opacity: 0.1; }
+.sdot::after  { content: ""; position: absolute; inset: 20%; border-radius: 50%; background: currentColor; }
+.sdot.done   { color: var(--dsw-alias-state-success-primary, #22c55e); }
+.sdot.warn   { color: var(--dsw-alias-state-warn-primary, #f59e0b); }
+.sdot.err    { color: var(--dsw-alias-state-error-primary, #ec1313); }
+.sdot.idle   { color: var(--dsw-static-neutral-bluish-400, #adb2b8); }
+.sdot.ready  { color: var(--dsw-static-neutral-bluish-300, #cfd3d6); }
+.sdot.ready::after { opacity: 0; }          /* ready = 空心 */
+.chase { color: var(--dsw-static-deepseek-450, #5686fe); flex: none; display: inline-block; }
+.chase rect { fill: currentColor; opacity: 0.15; animation: dsh-chase 1s infinite; }
+@keyframes dsh-chase { 0%, 12.4% { opacity: 1 } 12.5%, 24.9% { opacity: 0.6 } 25%, 37.4% { opacity: 0.35 } 37.5%, 100% { opacity: 0.15 } }
+
+/* ============================================================
+   组件一：subagent 实时输出弹窗
+   ============================================================ */
+.popup {
+  position: relative; display: flex; flex-direction: column;
+  width: 384px; max-width: 100%;
+  background: var(--dsw-alias-bg-layer-2, #ffffff);
+  border: 1px solid var(--dsw-alias-border-l2, rgba(0,0,0,0.1));
+  border-radius: 14px;
+  box-shadow: var(--dsw-shadow-lv3, 0 12px 32px rgba(0,0,0,0.08));
+  overflow: visible;
+}
+.popup-header {
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 6px 6px 8px;
+  border-bottom: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04));
+  cursor: grab; user-select: none;
+}
+.popup-header:active { cursor: grabbing; }
+.grip { display: grid; grid-template-columns: repeat(2, 3px); gap: 2px; padding: 4px 4px; color: var(--dsw-alias-label-dimmed, #e1e5ee); flex: none; }
+.grip i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
+.switcher { position: relative; display: inline-flex; align-items: center; gap: 3px; min-width: 0; border: none; background: transparent; border-radius: 6px; padding: 3px 6px; cursor: pointer; color: var(--dsw-alias-label-primary, #0f1115); }
+.switcher:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(38,49,72,0.06)); }
+.switcher .name { font-size: 13px; line-height: 20px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.switcher .chev { color: var(--dsw-alias-label-tertiary, #81858c); transition: transform 0.12s; }
+.switcher.open .chev { transform: rotate(180deg); }
+.switcher-menu {
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 100;
+  min-width: 250px; max-width: 320px;
+  background: var(--dsw-specific-menu, #ffffff);
+  border: 1px solid var(--dsw-alias-border-inverted, transparent);
+  border-radius: 12px; box-shadow: var(--dsw-shadow-lv3, 0 12px 32px rgba(0,0,0,0.08));
+  padding: 4px; display: none; text-align: left;
+}
+.switcher.open .switcher-menu { display: block; }
+.switcher-menu .mi {
+  display: flex; align-items: center; gap: 8px; width: 100%; min-height: 34px;
+  padding: 6px 10px; border: none; border-radius: 8px; background: transparent;
+  cursor: pointer; font-size: 13px; line-height: 18px; color: var(--dsw-alias-label-primary, #0f1115);
+}
+.switcher-menu .mi:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(38,49,72,0.06)); }
+.switcher-menu .mi .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.switcher-menu .mi .time { color: var(--dsw-alias-label-tertiary, #81858c); font-size: 12px; line-height: 18px; }
+.switcher-menu .mi .dot-slot { display: inline-flex; width: 10px; height: 10px; align-items: center; justify-content: center; }
+.pstatus { display: inline-flex; align-items: center; gap: 5px; margin-left: 2px; font-size: 12px; line-height: 18px; color: var(--dsw-alias-label-secondary, #61666b); white-space: nowrap; }
+.iconbtn { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border: none; border-radius: 8px; background: transparent; color: var(--dsw-alias-label-secondary, #61666b); cursor: pointer; flex: none; }
+.iconbtn:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(38,49,72,0.06)); }
+.iconbtn.danger:hover { background: var(--dsw-alias-interactive-bg-hover-danger, rgba(236,19,19,0.05)); color: var(--dsw-alias-state-error-primary, #ec1313); }
+.popup-body { flex: 1; min-height: 120px; padding: 10px 12px 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.msg { font-size: 14px; line-height: 22px; color: var(--dsw-alias-label-primary, #0f1115); white-space: pre-wrap; word-break: break-word; }
+.msg .caret { display: inline-block; width: 7px; height: 14px; vertical-align: -2px; margin-left: 1px; border-radius: 1px; background: var(--dsw-alias-state-business-primary, #4176e6); animation: dsh-blink 1s steps(1) infinite; }
+@keyframes dsh-blink { 50% { opacity: 0 } }
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 30px 16px; color: var(--dsw-alias-label-tertiary, #81858c); font-size: 13px; line-height: 20px; text-align: center; }
+.empty .e-ico { color: var(--dsw-alias-label-dimmed, #e1e5ee); }
+.resize { position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; color: var(--dsw-alias-label-tertiary, #81858c); cursor: nwse-resize; display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 0 4px 4px; }
+
+/* ---- 工具调用卡片（对齐官方 ToolRow + toolview） ---- */
+.tool { border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04)); border-radius: 10px; background: var(--dsw-alias-bg-layer-1, #ffffff); overflow: hidden; }
+.tool-head { position: relative; display: flex; align-items: center; gap: 6px; min-height: 30px; padding: 5px 10px; overflow: hidden; }
+.tool-head .tico { width: 16px; height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); flex: none; }
+.tool-head .tname { font-size: 13px; line-height: 18px; font-weight: 500; color: var(--dsw-alias-label-secondary, #61666b); flex: none; }
+.tool-head .tsep { width: 2px; height: 2px; border-radius: 50%; background: var(--dsw-alias-label-caption, #adb2b8); flex: none; margin: 0 2px; }
+.tool-head .tsum { flex: 1; min-width: 0; font-size: 13px; line-height: 18px; color: var(--dsw-alias-label-tertiary, #81858c); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tool-head .tst { display: inline-flex; align-items: center; gap: 4px; flex: none; font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.tool.running .tool-head::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 200px; pointer-events: none; background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--dsw-alias-bg-base, #ffffff) 60%, transparent) 55%, transparent 100%); animation: dsh-sweep 2.6s ease-out infinite; }
+@keyframes dsh-sweep { 0% { left: -200px } 90%, 100% { left: 100% } }
+.tool-body { display: flex; flex-direction: column; }
+.io { display: grid; grid-template-columns: max-content 1fr; gap: 0 14px; align-items: baseline; padding: 8px 12px; border-top: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04)); }
+.io .lab { align-self: start; font-size: 11px; line-height: 18px; color: var(--dsw-alias-label-caption, #adb2b8); }
+.io .val { min-width: 0; white-space: pre-wrap; word-break: break-word; font-family: var(--ds-font-family-code); font-size: 12px; line-height: 18px; color: var(--dsw-alias-label-secondary, #61666b); }
+.io .val.err { color: var(--dsw-alias-state-error-primary, #ec1313); }
+
+/* 终端类卡片（紧凑：12px，对齐 ToolRow 内终端覆盖） */
+.term { position: relative; margin: 0; padding-left: 24px; border-top: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04)); background: var(--dsw-alias-markdown-code-block, #f9fafb); overflow: hidden; color: var(--dsw-alias-label-primary, #0f1115); }
+.term-head { display: flex; align-items: center; gap: 8px; margin-left: -24px; padding: 7px 10px 7px 24px; border-bottom: 1px solid var(--dsw-alias-border-l2, rgba(0,0,0,0.1)); }
+.term .prompt { display: flex; align-items: baseline; gap: 8px; min-width: 0; flex: 1; font-family: var(--ds-font-family-code); font-size: 12px; line-height: 18px; }
+.term .cwd { flex: none; color: var(--dsw-alias-label-tertiary, #81858c); }
+.term .cmd { min-width: 0; color: var(--dsw-alias-label-primary, #0f1115); overflow: hidden; text-overflow: ellipsis; white-space: pre; }
+.term .runstate { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+.term .out { max-height: 180px; padding: 8px 12px 8px 0; font-family: var(--ds-font-family-code); font-size: 12px; line-height: 18px; white-space: pre; overflow: auto; color: var(--dsw-alias-label-primary, #0f1115); }
+.term .out .dim { color: var(--dsw-alias-label-tertiary, #81858c); }
+
+/* 读取类卡片（行号 gutter，对齐 ReadBlock） */
+.read { border-top: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04)); background: var(--dsw-alias-markdown-code-block, #f9fafb); overflow: hidden; }
+.read-banner { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: var(--dsw-alias-markdown-code-block-banner, #f9fafb); }
+.read-banner .flabel { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dsw-alias-label-primary, #0f1115); font-family: var(--ds-font-family-code); font-size: 12px; line-height: 18px; }
+.read-banner .fcount { flex: none; color: var(--dsw-alias-label-tertiary, #81858c); font-size: 12px; line-height: 18px; }
+.read-banner .fcopy { flex: none; display: inline-flex; color: var(--dsw-alias-label-secondary, #61666b); }
+.read-body { padding: 8px 0; font-family: var(--ds-font-family-code); font-size: 12px; line-height: 18px; overflow-x: auto; }
+.read-body .ln { display: flex; min-height: 18px; white-space: pre; }
+.read-body .gutter { flex: none; width: 40px; padding-right: 10px; text-align: right; color: var(--dsw-alias-label-tertiary, #81858c); user-select: none; }
+.read-body .code { color: var(--dsw-alias-label-primary, #0f1115); }
+.diff .add { color: var(--dsw-alias-state-success-primary, #22c55e); } .diff .add::before { content: "+ "; }
+.diff .del { color: var(--dsw-alias-state-error-primary, #ec1313); } .diff .del::before { content: "- "; }
+
+/* ---- 层叠/并排演示容器 ---- */
+.popups-row { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.popups-row .slot { position: relative; }
+.stackbox { position: relative; width: 440px; height: 320px; }
+.stackbox .popup { position: absolute; }
+.stackbox .p1 { left: 0; top: 8px; z-index: 2; }
+.stackbox .p2 { left: 76px; top: 40px; z-index: 1; opacity: 0.96; }
+
+/* ============================================================
+   组件二：子代理 tab 卡片
+   ============================================================ */
+.cards { display: flex; flex-direction: column; gap: 8px; max-width: 620px; }
+.scard {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 9px 12px; border: 1px solid var(--dsw-alias-border-l2, rgba(0,0,0,0.1));
+  border-radius: 12px; background: var(--dsw-alias-bg-layer-1, #ffffff);
+  transition: background 0.12s, box-shadow 0.12s;
+}
+.scard:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(38,49,72,0.06)); box-shadow: var(--dsw-shadow-lv2, 0 2px 8px rgba(0,0,0,0.04)); }
+.scard-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.scard-top .title { flex: 1; min-width: 0; font-size: 13px; line-height: 20px; font-weight: 500; color: var(--dsw-alias-label-primary, #0f1115); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scard-top .pill { flex: none; }
+.scard-stats { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.ctx { display: inline-flex; align-items: center; gap: 6px; }
+.ctx .bar { position: relative; width: 96px; height: 4px; border-radius: 2px; background: var(--dsw-alias-border-l2, rgba(0,0,0,0.1)); overflow: hidden; }
+.ctx .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--dsw-alias-state-business-primary, #4176e6); }
+.ctx.warn .fill { background: var(--dsw-alias-state-warn-primary, #f59e0b); }
+.ctx .pct { font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.stat { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.stat .ico { width: 13px; height: 13px; }
+.stat b { font-weight: 500; color: var(--dsw-alias-label-secondary, #61666b); }
+.scard-meta { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.scard-meta .sep { flex: none; width: 2px; height: 2px; border-radius: 50%; background: var(--dsw-alias-label-caption, #adb2b8); }
+.scard-meta .model { font-family: var(--ds-font-family-code); color: var(--dsw-alias-label-secondary, #61666b); }
+.scard-meta .mono { font-family: var(--ds-font-family-code); }
+.scard-meta .sid { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--ds-font-family-code); color: var(--dsw-alias-label-caption, #adb2b8); }
+.pill { display: inline-flex; align-items: center; gap: 3px; height: 18px; padding: 0 6px; border-radius: 9px; font-size: 10px; line-height: 16px; color: var(--dsw-alias-label-secondary, #61666b); background: var(--dsw-alias-bg-layer-2, #ffffff); border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,0.04)); }
+.pill.cont { color: var(--dsw-alias-state-business-primary, #4176e6); border-color: var(--dsw-alias-state-business-tertiary, #e4edfd); background: var(--dsw-alias-state-business-tertiary, #e4edfd); }
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); }
+.chip .ico { width: 13px; height: 13px; }
+
+/* ============================================================
+   图例 / 辅助（仅原型注释，非组件）
+   ============================================================ */
+.legend { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin: 0 0 16px; font-size: 12px; line-height: 18px; color: var(--dsw-alias-label-secondary, #61666b); }
+.legend .item { display: inline-flex; align-items: center; gap: 6px; }
+.note { font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-caption, #adb2b8); margin-top: 6px; }
+.caption { font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-tertiary, #81858c); margin: 0 0 10px; }
+</style>
+</head>
+<body>
+
+<!-- 图标 sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chev-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 9l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-4.3-4.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="6" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="19" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 7v3a4 4 0 0 0 4 4h2M12 14v2.5M18 8.2V11" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-popout" viewBox="0 0 24 24"><path d="M15 4h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 2.5 8 12 13l9.5-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M2.5 12.5 12 17.5l9.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.6-.6-.6-2.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 14.6a4.5 4.5 0 0 1 4.5 4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-corner" viewBox="0 0 24 24"><path d="M8 20v-8a4 4 0 0 1 4-4h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<div class="pagebar">
+  <span class="brand">dsh-subagent-max</span>
+  <span class="sub">高保真 UI 原型 · 静态稿</span>
+  <span class="spacer"></span>
+  <button class="themetoggle" id="themeToggle"><span id="themeLabel">暗色</span></button>
+</div>
+
+<main>
+
+  <!-- 状态圆点图例 -->
+  <section class="section">
+    <div class="legend">
+      <span class="item"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg> running 运行中</span>
+      <span class="item"><span class="sdot done"></span> done 已完成</span>
+      <span class="item"><span class="sdot idle"></span> idle 空闲（已加载）</span>
+      <span class="item"><span class="sdot ready"></span> ready 就绪（仅存储）</span>
+      <span class="item"><span class="sdot err"></span> failed 失败</span>
+      <span class="item"><span class="sdot warn"></span> warning 需注意</span>
+    </div>
+  </section>
+
+  <!-- ================= 一、实时输出弹窗 ================= -->
+  <section class="section">
+    <h2>一 · subagent 实时输出弹窗</h2>
+    <p class="desc">顶部 = 拖拽手柄 / 无边框切换器（名称 + chevron，展开项 = 状态点 + 标题 + 右侧时间）/ 状态 / 关闭；正文 = 流式文本 + 工具卡片；右下角 resize 手柄。</p>
+    <div class="stage">
+      <div class="popups-row">
+
+        <!-- 1. 流式中（含运行中的工具卡片） -->
+        <div class="slot">
+          <p class="caption">① 流式中（含运行中工具卡片）</p>
+          <div class="popup">
+            <div class="popup-header">
+              <span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="switcher">
+                <span class="name">code-search-worker</span>
+                <svg class="ico chev" style="width:14px;height:14px"><use href="#i-chev-down"/></svg>
+                <span class="switcher-menu">
+                  <button class="mi"><span class="dot-slot"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg></span><span class="t">code-search-worker</span><span class="time">1m 24s</span></button>
+                  <button class="mi"><span class="dot-slot"><span class="sdot done"></span></span><span class="t">refactor-review</span><span class="time">18m 02s</span></button>
+                  <button class="mi"><span class="dot-slot"><span class="sdot ready"></span></span><span class="t">docs-writer</span><span class="time">—</span></button>
+                  <button class="mi"><span class="dot-slot"><span class="sdot err"></span></span><span class="t">migration-check</span><span class="time">42s</span></button>
+                </span>
+              </span>
+              <span class="pstatus"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg>运行中</span>
+              <span style="flex:1"></span>
+              <button class="iconbtn danger" title="关闭"><svg class="ico" style="width:16px;height:16px"><use href="#i-close"/></svg></button>
+            </div>
+            <div class="popup-body">
+              <div class="msg">定位到 3 处引用，正在核对 tokens 用法，已排除 1 处误报，继续扫描…<span class="caret"></span></div>
+              <div class="tool running">
+                <div class="tool-head">
+                  <svg class="ico tico"><use href="#i-terminal"/></svg>
+                  <span class="tname">bash</span><span class="tsep"></span>
+                  <span class="tsum">rg -n "SubagentCatalogAction" packages/</span>
+                  <span class="tst"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg>1.2s</span>
+                </div>
+                <div class="term">
+                  <div class="term-head">
+                    <span class="runstate"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg></span>
+                    <span class="prompt"><span class="cwd">~/dsh-plugins</span><span class="cmd">$ rg -n "SubagentCatalogAction" packages/</span></span>
+                  </div>
+                  <div class="out"><span class="dim">packages/ui-subagent/src/</span>
+client/SubagentCatalogAction.tsx: 41 · function SubagentCatalogAction(</div>
+                </div>
+              </div>
+            </div>
+            <span class="resize"><svg class="ico" style="width:12px;height:12px"><use href="#i-corner"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 2. 已完成（含读取类 + diff 工具卡片） -->
+        <div class="slot">
+          <p class="caption">② 已完成（读取类 + diff 工具卡片）</p>
+          <div class="popup">
+            <div class="popup-header">
+              <span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="switcher">
+                <span class="name">refactor-review</span>
+                <svg class="ico chev" style="width:14px;height:14px"><use href="#i-chev-down"/></svg>
+                <span class="switcher-menu">
+                  <button class="mi"><span class="dot-slot"><span class="sdot done"></span></span><span class="t">refactor-review</span><span class="time">18m 02s</span></button>
+                  <button class="mi"><span class="dot-slot"><svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg></span><span class="t">code-search-worker</span><span class="time">1m 24s</span></button>
+                </span>
+              </span>
+              <span class="pstatus"><span class="sdot done"></span>已完成</span>
+              <span style="flex:1"></span>
+              <button class="iconbtn danger" title="关闭"><svg class="ico" style="width:16px;height:16px"><use href="#i-close"/></svg></button>
+            </div>
+            <div class="popup-body">
+              <div class="msg">重构建议已整理完毕，涉及 2 个文件的 12 处改动，详情见下方卡片。</div>
+              <div class="tool">
+                <div class="tool-head">
+                  <svg class="ico tico"><use href="#i-file"/></svg>
+                  <span class="tname">read</span><span class="tsep"></span>
+                  <span class="tsum">src/client/SubagentCatalogAction.tsx</span>
+                  <span class="tst"><svg class="ico" style="width:13px;height:13px;color:var(--dsw-alias-state-success-primary)"><use href="#i-check"/></svg>完成</span>
+                </div>
+                <div class="read">
+                  <div class="read-banner">
+                    <span class="flabel">SubagentCatalogAction.tsx</span>
+                    <span class="fcount">186 行</span>
+                    <span class="fcopy"><svg class="ico" style="width:14px;height:14px"><use href="#i-copy"/></svg></span>
+                  </div>
+                  <div class="read-body">
+                    <div class="ln"><span class="gutter">39</span><span class="code">function SubagentCatalogAction({ sessionId, useSessions, openChild, t }) {</span></div>
+                    <div class="ln"><span class="gutter">40</span><span class="code">  const catalog = useSessions((s) =&gt; s.subagentsByParent[sessionId]);</span></div>
+                    <div class="ln"><span class="gutter">41</span><span class="code">  const [open, setOpen] = useState(false);</span></div>
+                    <div class="ln"><span class="gutter">42</span><span class="code">  return (</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tool">
+                <div class="tool-head">
+                  <svg class="ico tico"><use href="#i-wrench"/></svg>
+                  <span class="tname">str_replace_editor</span><span class="tsep"></span>
+                  <span class="tsum">client.js · 1 file</span>
+                  <span class="tst"><svg class="ico" style="width:13px;height:13px;color:var(--dsw-alias-state-success-primary)"><use href="#i-check"/></svg>完成</span>
+                </div>
+                <div class="read diff">
+                  <div class="read-body">
+                    <div class="ln"><span class="gutter"></span><span class="code add">export function SubagentCatalogAction({ openChild }) {</span></div>
+                    <div class="ln"><span class="gutter"></span><span class="code del">export function SubagentCatalogAction() {</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="resize"><svg class="ico" style="width:12px;height:12px"><use href="#i-corner"/></svg></span>
+          </div>
+        </div>
+
+        <!-- 3. 空态 -->
+        <div class="slot">
+          <p class="caption">③ 空态（刚打开，尚无输出）</p>
+          <div class="popup">
+            <div class="popup-header">
+              <span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="switcher">
+                <span class="name">docs-writer</span>
+                <svg class="ico chev" style="width:14px;height:14px"><use href="#i-chev-down"/></svg>
+              </span>
+              <span class="pstatus"><span class="sdot ready"></span>待启动</span>
+              <span style="flex:1"></span>
+              <button class="iconbtn danger" title="关闭"><svg class="ico" style="width:16px;height:16px"><use href="#i-close"/></svg></button>
+            </div>
+            <div class="popup-body">
+              <div class="empty">
+                <svg class="ico e-ico" style="width:22px;height:22px"><use href="#i-terminal"/></svg>
+                等待子代理输出…
+              </div>
+            </div>
+            <span class="resize"><svg class="ico" style="width:12px;height:12px"><use href="#i-corner"/></svg></span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="height:20px"></div>
+      <p class="caption">④ 多个弹窗并排 / 层叠（拖拽 + 缩放后堆叠）</p>
+      <div class="stackbox">
+        <div class="popup p1">
+          <div class="popup-header">
+            <span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="switcher"><span class="name">refactor-review</span><svg class="ico chev" style="width:14px;height:14px"><use href="#i-chev-down"/></svg></span>
+            <span class="pstatus"><span class="sdot done"></span>已完成</span>
+            <span style="flex:1"></span>
+            <button class="iconbtn danger"><svg class="ico" style="width:16px;height:16px"><use href="#i-close"/></svg></button>
+          </div>
+          <div class="popup-body">
+            <div class="msg">审查完成，12 处改动建议已给出。</div>
+            <div class="tool">
+              <div class="tool-head"><svg class="ico tico"><use href="#i-search"/></svg><span class="tname">grep</span><span class="tsep"></span><span class="tsum">"TODO" src/ · 3 处</span><span class="tst"><svg class="ico" style="width:13px;height:13px;color:var(--dsw-alias-state-success-primary)"><use href="#i-check"/></svg>完成</span></div>
+            </div>
+          </div>
+          <span class="resize"><svg class="ico" style="width:12px;height:12px"><use href="#i-corner"/></svg></span>
+        </div>
+        <div class="popup p2">
+          <div class="popup-header">
+            <span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="switcher"><span class="name">migration-check</span><svg class="ico chev" style="width:14px;height:14px"><use href="#i-chev-down"/></svg></span>
+            <span class="pstatus"><span class="sdot err"></span>失败</span>
+            <span style="flex:1"></span>
+            <button class="iconbtn danger"><svg class="ico" style="width:16px;height:16px"><use href="#i-close"/></svg></button>
+          </div>
+          <div class="popup-body">
+            <div class="msg">迁移校验失败，请查看错误日志。</div>
+            <div class="tool">
+              <div class="tool-head"><svg class="ico tico"><use href="#i-terminal"/></svg><span class="tname">bash</span><span class="tsep"></span><span class="tsum" style="color:var(--dsw-alias-state-error-primary)">exit 1 · EPERM</span><span class="tst"><span class="sdot err"></span>失败</span></div>
+              <div class="io"><span class="lab">输出</span><span class="val err">Error: EPERM: operation not permitted</span></div>
+            </div>
+          </div>
+          <span class="resize"><svg class="ico" style="width:12px;height:12px"><use href="#i-corner"/></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 二、子代理卡片列表 ================= -->
+  <section class="section">
+    <h2>二 · 子代理 tab 卡片列表</h2>
+    <p class="desc">无任何「xx：」前缀；用位置 + 图标 + 单位 + 字号/颜色层级表达：状态点、运行时长、模型、token 用量与上下文占比、tps、step、mode、会话 id、是否有子代理、创建时间、打开小窗。</p>
+    <div class="stage">
+      <div class="cards">
+
+        <!-- running · 有子代理 · 高上下文 -->
+        <div class="scard">
+          <div class="scard-top">
+            <svg class="chase" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><rect x="0" y="0" width="2" height="2" style="animation-delay:-1000ms"/><rect x="4" y="0" width="2" height="2" style="animation-delay:-875ms"/><rect x="8" y="0" width="2" height="2" style="animation-delay:-750ms"/><rect x="8" y="4" width="2" height="2" style="animation-delay:-625ms"/><rect x="8" y="8" width="2" height="2" style="animation-delay:-500ms"/><rect x="4" y="8" width="2" height="2" style="animation-delay:-375ms"/><rect x="0" y="8" width="2" height="2" style="animation-delay:-250ms"/><rect x="0" y="4" width="2" height="2" style="animation-delay:-125ms"/></svg>
+            <span class="title">code-search-worker · 全局引用定位</span>
+            <span class="pill cont">可继续</span>
+            <span class="chip"><svg class="ico"><use href="#i-users"/></svg>2</span>
+            <button class="iconbtn" style="width:22px;height:22px" title="打开小窗"><svg class="ico" style="width:15px;height:15px"><use href="#i-popout"/></svg></button>
+          </div>
+          <div class="scard-stats">
+            <span class="ctx"><span class="bar"><span class="fill" style="width:68%"></span></span><span class="pct">68%</span></span>
+            <span class="stat"><b>12.4K</b>&nbsp;tok</span>
+            <span class="stat"><svg class="ico"><use href="#i-zap"/></svg><b>18.2</b>&nbsp;t/s</span>
+            <span class="stat"><svg class="ico"><use href="#i-layers"/></svg><b>12</b>&nbsp;steps</span>
+          </div>
+          <div class="scard-meta">
+            <span class="model">deepseek-v4-pro</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-clock"/></svg> 2m 42s</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cal"/></svg> 14:32</span>
+            <span class="sid">sess_9f3a…c2e1</span>
+          </div>
+        </div>
+
+        <!-- idle · 有子代理 -->
+        <div class="scard">
+          <div class="scard-top">
+            <span class="sdot idle"></span>
+            <span class="title">refactor-review</span>
+            <span class="pill cont">可继续</span>
+            <span class="chip"><svg class="ico"><use href="#i-users"/></svg>1</span>
+            <button class="iconbtn" style="width:22px;height:22px" title="打开小窗"><svg class="ico" style="width:15px;height:15px"><use href="#i-popout"/></svg></button>
+          </div>
+          <div class="scard-stats">
+            <span class="ctx"><span class="bar"><span class="fill" style="width:41%"></span></span><span class="pct">41%</span></span>
+            <span class="stat"><b>28.6K</b>&nbsp;tok</span>
+            <span class="stat"><svg class="ico"><use href="#i-zap"/></svg><b>15.4</b>&nbsp;t/s</span>
+            <span class="stat"><svg class="ico"><use href="#i-layers"/></svg><b>9</b>&nbsp;steps</span>
+          </div>
+          <div class="scard-meta">
+            <span class="model">k3-256k</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-clock"/></svg> 18m 02s</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cal"/></svg> 11:08</span>
+            <span class="sid">sess_7b1d…88a0</span>
+          </div>
+        </div>
+
+        <!-- ready（仅存储，无子代理，长标题截断） -->
+        <div class="scard">
+          <div class="scard-top">
+            <span class="sdot ready"></span>
+            <span class="title">docs-writer · 为一个非常长的子代理任务标题做截断演示——它会在省略号处被优雅地截断而不会撑破卡片布局</span>
+            <span class="pill">一次性</span>
+            <button class="iconbtn" style="width:22px;height:22px" title="打开小窗"><svg class="ico" style="width:15px;height:15px"><use href="#i-popout"/></svg></button>
+          </div>
+          <div class="scard-stats">
+            <span class="ctx"><span class="bar"><span class="fill" style="width:12%"></span></span><span class="pct">12%</span></span>
+            <span class="stat"><b>3.1K</b>&nbsp;tok</span>
+            <span class="stat"><svg class="ico"><use href="#i-zap"/></svg><b>9.7</b>&nbsp;t/s</span>
+            <span class="stat"><svg class="ico"><use href="#i-layers"/></svg><b>4</b>&nbsp;steps</span>
+          </div>
+          <div class="scard-meta">
+            <span class="model">deepseek-v4-flash</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-clock"/></svg> 1m 15s</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cal"/></svg> 昨天</span>
+            <span class="sid">sess_c4a8…77d2</span>
+          </div>
+        </div>
+
+        <!-- failed -->
+        <div class="scard">
+          <div class="scard-top">
+            <span class="sdot err"></span>
+            <span class="title">migration-check</span>
+            <span class="pill">一次性</span>
+            <button class="iconbtn" style="width:22px;height:22px" title="打开小窗"><svg class="ico" style="width:15px;height:15px"><use href="#i-popout"/></svg></button>
+          </div>
+          <div class="scard-stats">
+            <span class="ctx"><span class="bar"><span class="fill" style="width:23%"></span></span><span class="pct">23%</span></span>
+            <span class="stat"><b>1.8K</b>&nbsp;tok</span>
+            <span class="stat"><svg class="ico"><use href="#i-zap"/></svg><b>—</b>&nbsp;t/s</span>
+            <span class="stat"><svg class="ico"><use href="#i-layers"/></svg><b>2</b>&nbsp;steps</span>
+          </div>
+          <div class="scard-meta">
+            <span class="model">glm-5.2</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-clock"/></svg> 42s</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cal"/></svg> 13:59</span>
+            <span class="sid" style="color:var(--dsw-alias-state-error-primary)">exit 1 · EPERM</span>
+          </div>
+        </div>
+
+        <!-- done（完成，无子代理，低上下文） -->
+        <div class="scard">
+          <div class="scard-top">
+            <span class="sdot done"></span>
+            <span class="title">api-doc-refresh</span>
+            <span class="pill">一次性</span>
+            <button class="iconbtn" style="width:22px;height:22px" title="打开小窗"><svg class="ico" style="width:15px;height:15px"><use href="#i-popout"/></svg></button>
+          </div>
+          <div class="scard-stats">
+            <span class="ctx"><span class="bar"><span class="fill" style="width:6%"></span></span><span class="pct">6%</span></span>
+            <span class="stat"><b>860</b>&nbsp;tok</span>
+            <span class="stat"><svg class="ico"><use href="#i-zap"/></svg><b>11.0</b>&nbsp;t/s</span>
+            <span class="stat"><svg class="ico"><use href="#i-layers"/></svg><b>1</b>&nbsp;step</span>
+          </div>
+          <div class="scard-meta">
+            <span class="model">deepseek-v4-pro</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-clock"/></svg> 22s</span><span class="sep"></span>
+            <span><svg class="ico" style="width:13px;height:13px;vertical-align:-2px"><use href="#i-cal"/></svg> 10:02</span>
+            <span class="sid">sess_2e6f…01b9</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="note">注：上下文占比用细进度条 + 百分比数字表达（业务色 business-primary，接近上限可切 warn 色）；token/tps/step 均为「数值 + 单位/图标」，无字段名前缀。</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var btn = document.getElementById('themeToggle');
+  var label = document.getElementById('themeLabel');
+  btn.addEventListener('click', function () {
+    if (document.body.hasAttribute('data-ds-dark-theme')) {
+      document.body.removeAttribute('data-ds-dark-theme');
+      label.textContent = '暗色';
+    } else {
+      document.body.setAttribute('data-ds-dark-theme', '');
+      label.textContent = '亮色';
+    }
+  });
+  // 切换器下拉（无边框）；点击空白处收起
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('.switcher') : null;
+    var open = document.querySelectorAll('.switcher.open');
+    for (var i = 0; i < open.length; i++) {
+      if (open[i] !== t) open[i].classList.remove('open');
+    }
+    if (t) t.classList.toggle('open');
+  });
+})();
+</script>
+</body>
+</html>
