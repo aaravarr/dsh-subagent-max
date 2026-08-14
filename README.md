@@ -1,4 +1,4 @@
-# @aaravarr/dsh-subagent-max
+# dsh-subagent-max
 
 English | [中文](README.zh.md)
 
@@ -64,7 +64,7 @@ or, manually, place the package under `<profile>/node_modules/@aaravarr/dsh-suba
 
 Ask the model to delegate with an explicit model:
 
-> 用 `deepseek-v4-flash` 起一个子代理，帮我看看这个仓库的测试覆盖情况。
+> Start a subagent with `deepseek-v4-flash` to review this repo's test coverage.
 
 Tool parameters:
 

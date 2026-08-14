@@ -1,4 +1,4 @@
-# @aaravarr/dsh-subagent-max
+# dsh-subagent-max
 
 [English](README.md) | 中文
 
