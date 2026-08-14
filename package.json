@@ -1,15 +1,19 @@
 {
   "name": "@aaravarr/dsh-subagent-max",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Subagent delegation with per-call model/provider override (host) + multi-panel live streaming subagent viewer (client)",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
   "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
       "inject": [
@@ -17,7 +21,7 @@
       ]
     }
   },
-  "files": ["lib"],
+  "files": ["lib", "cordis.patch.yml"],
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0"
