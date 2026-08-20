@@ -25,6 +25,7 @@
 ## 特性
 
 - **按调用覆盖模型/供应商** —— 委派子代理时显式指定其模型。
+- **自动选择供应商** —— 不传 provider 时，优先用父级 provider（若能服务目标模型），否则自动找携带该模型的 provider。
 - **多面板实时查看器** —— 同时打开多个子代理弹窗，每个都实时流式输出。
 - **丰富的块渲染** —— 任务块、推理（Think）块、带输入/输出的工具卡、流式流光、Markdown。
 - **子代理标签页** —— 卡片网格按「活跃中 / 不活跃」分组、按最后活动时间排序；展示模型、token、steps、上下文占比和相对更新时间。
@@ -71,7 +72,7 @@ dsh plugin --profile web add @aaravarr/dsh-subagent-max
 | 参数 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
 | `model` | string | 是 | 子代理模型 id（如 `deepseek-v4-pro`、`deepseek-v4-flash`、`k3-256k`）。 |
-| `provider` | string | 否 | LLM provider 路由；省略则继承父级。 |
+| `provider` | string | 否 | LLM provider 路由。省略则自动选择：优先使用父级自身的 provider（若能服务目标模型）；否则自动找一个携带该模型的 provider；若所有 provider 都不含该模型，则按原样继承父级 provider（子代理可能报 `UNKNOWN_MODEL`）。 |
 | `description` | string | 是 | 简短（3-5 词）任务标签。 |
 | `prompt` | string | 是 | 完整、自包含的任务。 |
 | `run_in_background` | bool | 否 | 后台路由；默认跟随 `backgroundMode`。 |

@@ -25,6 +25,7 @@ A two-face DSH plugin:
 ## Features
 
 - **Per-call model / provider override** — delegate to a subagent and pick its model explicitly.
+- **Smart provider selection** — when no provider is given, prefer the parent's provider if it serves the requested model, otherwise auto-find a provider that carries it.
 - **Multi-panel live viewer** — open several subagent panels at once; each streams output in real time.
 - **Rich block rendering** — prompt block, reasoning (think) blocks, tool-call cards with input/output, streaming shimmer, markdown.
 - **Subagents tab** — card grid grouped into active / inactive and sorted by last activity; shows model, tokens, steps, context % and relative update time.
@@ -71,7 +72,7 @@ Tool parameters:
 | Arg | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `model` | string | yes | Child model id (e.g. `deepseek-v4-pro`, `deepseek-v4-flash`, `k3-256k`). |
-| `provider` | string | no | LLM provider route; omitted = inherit the parent's provider. |
+| `provider` | string | no | LLM provider route. Omitted -> auto-selected: the parent's own provider is preferred when it can serve the requested model; otherwise the first provider carrying that model is used; if none does, the parent's provider is inherited (the child may then fail with `UNKNOWN_MODEL`). |
 | `description` | string | yes | Short (3-5 word) task label. |
 | `prompt` | string | yes | Complete, self-contained task. |
 | `run_in_background` | bool | no | Background routing; default follows `backgroundMode`. |
